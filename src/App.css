@@ -6,23 +6,10 @@
 	box-sizing: 0;
 }
 body {
-	font-family: popins-regular;
-	/* overflow: hidden; */
+	font-family: "Poppins", sans-serif;
 	font-size: 16px;
 }
 
-@font-face {
-	font-family: popins-regular;
-	src: url("../fonts/Poppins-Regular.ttf");
-}
-@font-face {
-	font-family: popins-medium;
-	src: url("../fonts/Poppins-Medium.ttf");
-}
-@font-face {
-	font-family: popins-bold;
-	src: url("../fonts/Poppins-Bold.ttf");
-}
 a {
 	text-decoration: none;
 }
@@ -285,8 +272,8 @@ i.fa {
 	padding: 10px;
 	width: 100%;
 	margin-bottom: 10px;
-    color: #000000;
-    margin-top: 30px;
+	color: #000000;
+	margin-top: 30px;
 }
 .basket__item a {
 	color: inherit;
