@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { Component } from 'react';
+import './App.css';
+import Register from './components/auth/Register';
 
-const App = () => (
-	<Router>
-		<Fragment></Fragment>
-	</Router>
-);
+class App extends Component {
+  render() {
+    return <Register />;
+  }
+}
 
 export default App;
