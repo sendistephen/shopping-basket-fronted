@@ -1,4 +1,7 @@
+[![Build Status](https://travis-ci.com/sendistephen/shopping-basket-fronted.svg?branch=develop)](https://travis-ci.com/sendistephen/shopping-basket-fronted)
+
 # Shopping Basket App Fronted(React)
+
 This is a shopping basket web application built with react. It allows users to manage their shopping lists.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
