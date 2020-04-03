@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import * as userService from '../../services/userService';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 class Register extends Component {
   state = {
     data: {
       name: '',
       email: '',
-      password: ''
+      password: '',
     },
-    errors: {}
+    errors: {},
   };
 
-  onChange = e => {
+  onChange = (e) => {
     const { name, value } = e.target;
     // clone the state obj
     let data = { ...this.state.data };
     data[name] = value;
     this.setState({ data });
   };
-  onSubmit = async e => {
+  onSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -42,12 +43,12 @@ class Register extends Component {
     return (
       <div className='main'>
         <div className='d-flex'>
-          <a
+          <Link
             className='main-login-btn btn btn-outline-secondary shadow'
-            href='#'
+            to={'/login'}
           >
             Log in
-          </a>
+          </Link>
           <div className='main-left-side d-flex'>
             <h1
               className='pl-5 align-items-center align-self-center'
@@ -67,7 +68,7 @@ class Register extends Component {
                   style={{
                     color: '#3D4852',
                     fontSize: '18px',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
                   }}
                 >
                   {' '}
@@ -112,9 +113,12 @@ class Register extends Component {
                   <hr className='my-5' />
                   <p className='lead text-center' style={{ color: '#ABBBC8' }}>
                     Already have an account?{' '}
-                    <a style={{ color: '#0071E2', fontWeight: '400' }} href='#'>
+                    <Link
+                      style={{ color: '#0071E2', fontWeight: '400' }}
+                      to={'/login'}
+                    >
                       Login
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>
