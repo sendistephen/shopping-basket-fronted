@@ -19,10 +19,8 @@ class App extends Component {
         <ToastContainer />
         <Router>
           <Switch>
-            <Route exact path='/baskets' component={Baskets} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/' component={Register} />
-            <Redirect exact from='/login' to='/baskets' />
+            <Route path='/login' component={Login} />
+            <Route path='/' component={Register} />
           </Switch>
         </Router>
       </Fragment>

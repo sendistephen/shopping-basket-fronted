@@ -1,133 +1,140 @@
-import React, { Component } from 'react';
-import * as userService from '../../services/userService';
+import React, { useState, useEffect } from 'react';
+import { register } from '../actions/auth';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
-class Register extends Component {
-  state = {
-    data: {
-      name: '',
-      email: '',
-      password: '',
-    },
-    errors: {},
+const Register = () => {
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    password: '',
+    error: '',
+    loading: false,
+    open: false,
+  });
+  // destructure state
+  const { name, email, password, loading, open } = values;
+
+  const handleChange = (name) => (e) => {
+    setValues({
+      ...values,
+      [name]: e.target.value,
+      error: false,
+    });
   };
 
-  onChange = (e) => {
-    const { name, value } = e.target;
-    // clone the state obj
-    let data = { ...this.state.data };
-    data[name] = value;
-    this.setState({ data });
-  };
-  onSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    // set values in the state before submit
+    setValues({ ...values, loading: true, error: false });
+    // create a user object
+    const user = { name, email, password };
 
-    try {
-      const result = await userService.register(this.state.data);
-      if (result) {
-        toast.success('User registered successfully');
-
-        this.props.history.push('/login');
+    // make an api request to the server
+    register(user).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, loading: false });
+        toast.error(data.error);
+      } else {
+        setValues({
+          name: '',
+          email: '',
+          password: '',
+          error: '',
+          loading: false,
+          open: true,
+        });
+        toast.success(data.msg);
       }
-    } catch (ex) {
-      if (ex.response && ex.response.status === 400) {
-        let errors = { ...this.state.errors };
-        errors.data = ex.response.data;
-        this.setState({ errors });
-      }
-    }
+    });
   };
-  render() {
-    const { name, email, password } = this.state.data;
-    return (
-      <div className='main'>
-        <div className='d-flex'>
-          <Link
-            className='main-login-btn btn btn-outline-secondary shadow'
-            to={'/login'}
+  
+  const showLoading = () =>
+    loading ? <div className='alert alert-info'>Loading...</div> : '';
+
+  return (
+    <div className='main'>
+      <div className='d-flex'>
+        <a className='main-login-btn btn btn-outline-secondary shadow' href='#'>
+          Log in
+        </a>
+        <div className='main-left-side d-flex'>
+          <h1
+            className='pl-5 align-items-center align-self-center'
+            style={{ fontSize: '68px', fontWeight: '900' }}
           >
-            Log in
-          </Link>
-          <div className='main-left-side d-flex'>
-            <h1
-              className='pl-5 align-items-center align-self-center'
-              style={{ fontSize: '68px', fontWeight: '900' }}
-            >
-              Shopping <br /> Basket.
-            </h1>
-          </div>
-          <div className='main-right-side'>
-            <div
-              className='card rounded-lg shadow'
-              style={{ width: '28rem', borderColor: '#C4CFDB' }}
-            >
-              <div className='card-body'>
-                <p
-                  className='lead py-3'
-                  style={{
-                    color: '#3D4852',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {' '}
-                  Register to get started.
+            Shopping <br /> Basket.
+          </h1>
+        </div>
+        <div className='main-right-side'>
+          {showLoading()}
+
+          <div
+            className='card rounded-lg shadow'
+            style={{ width: '28rem', borderColor: '#C4CFDB' }}
+          >
+            <div className='card-body'>
+              <p
+                className='lead py-3'
+                style={{
+                  color: '#3D4852',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                }}
+              >
+                {' '}
+                Register to get started.
+              </p>
+              <form onSubmit={handleSubmit}>
+                <div className='form-group'>
+                  <input
+                    type='text'
+                    className='form-control form-rounded'
+                    name='name'
+                    placeholder='Username'
+                    value={name}
+                    onChange={handleChange('name')}
+                  />
+                </div>
+                <div className='form-group form-rounded'>
+                  <input
+                    type='email'
+                    className='form-control form-rounded'
+                    name='email'
+                    id='email'
+                    placeholder='Email'
+                    value={email}
+                    onChange={handleChange('email')}
+                  />
+                </div>
+                <div className='form-group'>
+                  <input
+                    type='password'
+                    className='form-control form-rounded'
+                    name='password'
+                    id='password'
+                    placeholder='Password'
+                    value={password}
+                    onChange={handleChange('password')}
+                  />
+                </div>
+                <button type='submit' className='btn btn-register btn-block'>
+                  Register
+                </button>
+                <hr className='my-5' />
+                <p className='lead text-center' style={{ color: '#ABBBC8' }}>
+                  Already have an account?{' '}
+                  <a style={{ color: '#0071E2', fontWeight: '400' }} href='#'>
+                    Login
+                  </a>
                 </p>
-                <form onSubmit={this.onSubmit}>
-                  <div className='form-group'>
-                    <input
-                      type='text'
-                      className='form-control form-rounded'
-                      name='name'
-                      placeholder='Username'
-                      value={name}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <div className='form-group form-rounded'>
-                    <input
-                      type='email'
-                      className='form-control form-rounded'
-                      name='email'
-                      id='email'
-                      placeholder='Email'
-                      value={email}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <div className='form-group'>
-                    <input
-                      type='password'
-                      className='form-control form-rounded'
-                      name='password'
-                      id='password'
-                      placeholder='Password'
-                      value={password}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <button type='submit' className='btn btn-register btn-block'>
-                    Register
-                  </button>
-                  <hr className='my-5' />
-                  <p className='lead text-center' style={{ color: '#ABBBC8' }}>
-                    Already have an account?{' '}
-                    <Link
-                      style={{ color: '#0071E2', fontWeight: '400' }}
-                      to={'/login'}
-                    >
-                      Login
-                    </Link>
-                  </p>
-                </form>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Register;
