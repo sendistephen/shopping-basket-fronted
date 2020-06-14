@@ -31,7 +31,23 @@ exports[`App component renders properly 1`] = `
     <Switch>
       <Route
         component={[Function]}
+        exact={true}
+        path="/baskets"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/login"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
         path="/"
+      />
+      <Redirect
+        exact={true}
+        from="/login"
+        to="/baskets"
       />
     </Switch>
   </BrowserRouter>

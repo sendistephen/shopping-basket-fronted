@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component renders properly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="card"
+    style={
+      Object {
+        "margin": "70px auto",
+        "width": "40%",
+      }
+    }
+  >
+    <div
+      className="card-body"
+    >
+      <h5
+        className="card-title text-center font-weight-bold"
+      >
+        Shopping Basket
+      </h5>
+      <p
+        className="card-text text-center lead mb-5"
+      >
+        Welcome back. Please log in here.
+      </p>
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group form-rounded"
+        >
+          <input
+            className="form-control form-rounded"
+            id="email"
+            name="email"
+            onChange={[Function]}
+            placeholder="Email"
+            type="email"
+            value=""
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <input
+            className="form-control form-rounded"
+            id="password"
+            name="password"
+            onChange={[Function]}
+            placeholder="Password"
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          className="btn btn-register btn-block"
+          type="submit"
+        >
+          Log In
+        </button>
+        <hr
+          className="my-4"
+        />
+        <p
+          className="lead text-center"
+          style={
+            Object {
+              "color": "#ABBBC8",
+            }
+          }
+        >
+          Don't have an account?
+           
+          <Link
+            style={
+              Object {
+                "color": "#0071E2",
+                "fontWeight": "400",
+              }
+            }
+            to="/"
+          >
+            Sign up
+          </Link>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+`;

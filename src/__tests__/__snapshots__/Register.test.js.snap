@@ -7,12 +7,12 @@ exports[`Register component renders properly 1`] = `
   <div
     className="d-flex"
   >
-    <a
+    <Link
       className="main-login-btn btn btn-outline-secondary shadow"
-      href="#"
+      to="/login"
     >
       Log in
-    </a>
+    </Link>
     <div
       className="main-left-side d-flex"
     >
@@ -118,17 +118,17 @@ exports[`Register component renders properly 1`] = `
             >
               Already have an account?
                
-              <a
-                href="#"
+              <Link
                 style={
                   Object {
                     "color": "#0071E2",
                     "fontWeight": "400",
                   }
                 }
+                to="/login"
               >
                 Login
-              </a>
+              </Link>
             </p>
           </form>
         </div>

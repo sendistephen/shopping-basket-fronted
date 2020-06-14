@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { register } from '../actions/auth';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -47,6 +48,7 @@ const Register = () => {
       }
     });
   };
+  
   const showLoading = () =>
     loading ? <div className='alert alert-info'>Loading...</div> : '';
 
