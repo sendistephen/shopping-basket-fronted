@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { register } from '../actions/auth';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
@@ -10,10 +10,9 @@ const Register = () => {
     password: '',
     error: '',
     loading: false,
-    open: false,
   });
   // destructure state
-  const { name, email, password, loading, open } = values;
+  const { name, email, password, loading } = values;
 
   const handleChange = (name) => (e) => {
     setValues({
@@ -42,22 +41,25 @@ const Register = () => {
           password: '',
           error: '',
           loading: false,
-          open: true,
         });
         toast.success(data.msg);
       }
     });
   };
-  
+
   const showLoading = () =>
     loading ? <div className='alert alert-info'>Loading...</div> : '';
 
   return (
     <div className='main'>
       <div className='d-flex'>
-        <a className='main-login-btn btn btn-outline-secondary shadow' href='#'>
+        <Link
+          to='/login'
+          className='main-login-btn btn btn-outline-secondary shadow'
+          href='#'
+        >
           Log in
-        </a>
+        </Link>
         <div className='main-left-side d-flex'>
           <h1
             className='pl-5 align-items-center align-self-center'
@@ -124,9 +126,13 @@ const Register = () => {
                 <hr className='my-5' />
                 <p className='lead text-center' style={{ color: '#ABBBC8' }}>
                   Already have an account?{' '}
-                  <a style={{ color: '#0071E2', fontWeight: '400' }} href='#'>
+                  <Link
+                    to='/login'
+                    style={{ color: '#0071E2', fontWeight: '400' }}
+                    href='#'
+                  >
                     Login
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>
