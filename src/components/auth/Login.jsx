@@ -34,7 +34,7 @@ const Login = ({ history }) => {
         // authenticate user
         authenticate(data, () => {
           setValues({ ...values, redirectToReferrer: true });
-          toast.success(`Hi ${data.user.username}, Welcome back!`);
+          toast.success(`Hi ${data.user.name}, Welcome back!`);
         });
       }
     });

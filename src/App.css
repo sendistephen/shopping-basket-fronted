@@ -54,3 +54,31 @@ input[type='password'] {
   color: #2c2c33;
   font-weight: 400 !important;
 }
+.basket-category {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: #9ebdff91;
+}
+.basket-category:hover {
+  background-color: #adc7ff91;
+  cursor: pointer;
+}
+.basket-category-link {
+  text-decoration: none;
+  color: #5e7493;
+}
+.basket-category-link span {
+  font-size: 0.875rem;
+}
+a.basket-category-link:hover {
+  text-decoration: none;
+  color: #1f1f2e;
+}
+.footer span {
+  font-size: 12px;
+}
+
+form .search {
+  padding: 18px 25px !important;
+  border: 1px solid #e7e7e7;
+}
