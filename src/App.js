@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Baskets from './components/baskets/baskets';
 import PrivateRoute from './components/auth/PrivateRoute';
+import BasketDetails from './components/baskets/basketDetails';
 
 class App extends Component {
   render() {
@@ -15,6 +16,11 @@ class App extends Component {
         <ToastContainer />
         <Router>
           <Switch>
+            <PrivateRoute
+              exact
+              path='/basket/:basketId'
+              component={BasketDetails}
+            />
             <PrivateRoute exact path='/baskets' component={Baskets} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/' component={Register} />

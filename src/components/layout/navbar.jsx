@@ -1,5 +1,6 @@
 import React from 'react';
 import { isAuthenticated } from '../actions/auth';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const { user } = isAuthenticated();
@@ -25,9 +26,9 @@ const NavBar = () => {
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav mx-auto'>
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <Link className='nav-link' to='/baskets'>
                 All Baskets
-              </a>
+              </Link>
             </li>
             <li className='nav-item'>
               <a className='nav-link' href='#'>
@@ -44,8 +45,7 @@ const NavBar = () => {
           <ul className='navbar-nav ml-auto'>
             <li className='nav-item'>
               <a className='nav-link' href='#'>
-                Welcome{' '}
-                <span className='text-sm text-primary'>{user.name}</span>
+                Hi, <span className='text-sm text-primary'>{user.name}</span>
               </a>
             </li>
           </ul>
