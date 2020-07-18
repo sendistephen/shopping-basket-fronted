@@ -1,9 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { getBaskets, isAuthenticated } from '../actions/auth';
+import { isAuthenticated } from '../actions/auth';
 import NavBar from '../layout/navbar';
 import Footer from '../layout/footer';
 import Search from '../layout/search';
 import LoadingIndicator from '../../common/loadingIndicator';
+import { Link } from 'react-router-dom';
+import { getBaskets } from '../actions/basket';
 
 const Baskets = ({ history }) => {
   const [values, setValues] = useState({
@@ -44,20 +46,21 @@ const Baskets = ({ history }) => {
               <Search />
               {loading ? (
                 <LoadingIndicator />
-              ) : baskets.length === 0 ? (
-                <p className='lead'>You currently have no baskets</p>
               ) : (
-                baskets &&
+                baskets.length > 0 &&
                 baskets.map((basket) => (
                   <div
                     key={basket._id}
-                    className='basket-category mb-2 px-2 shadow-sm rounded-sm d-flex align-items-center'
+                    className='d-flex justify-content-between basket-category mb-2 px-2 shadow-sm rounded-sm d-flex align-items-center'
                   >
-                    <a href='!#' className='basket-category-link'>
-                      <span className='lead font-weight-normal'>
+                    <Link
+                      to={`/basket/${basket._id}`}
+                      className='basket-category-link'
+                    >
+                      <span className='lead font-weight-normal text-sm'>
                         {basket.category}
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 ))
               )}

@@ -1,5 +1,5 @@
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .main {
@@ -48,6 +48,7 @@ input[type='password'] {
   color: #edf2f7;
   background-color: #27272e;
 }
+
 .main-login-btn:hover {
   background-color: #dde6f0;
   border-color: #dde6f0;
@@ -67,8 +68,21 @@ input[type='password'] {
   text-decoration: none;
   color: #5e7493;
 }
-.basket-category-link span {
+.text-sm {
+  font-size: 1rem;
+}
+.text-sm_1 {
   font-size: 0.875rem;
+}
+.text-sm_2 {
+  font-size: 0.8125rem;
+}
+.heading-md {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+.text_desc {
+  color: #3d3552;
 }
 a.basket-category-link:hover {
   text-decoration: none;
@@ -82,3 +96,4 @@ form .search {
   padding: 18px 25px !important;
   border: 1px solid #e7e7e7;
 }
+
