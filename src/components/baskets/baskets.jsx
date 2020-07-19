@@ -37,7 +37,7 @@ const Baskets = ({ history }) => {
 
   return (
     <Fragment>
-      <NavBar totalBaskets={baskets.length} />
+      <NavBar />
       <div className='container'>
         <div className='row'>
           <div className='col-md-6 mx-auto'>

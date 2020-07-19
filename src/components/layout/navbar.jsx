@@ -2,7 +2,7 @@ import React from 'react';
 import { isAuthenticated } from '../actions/auth';
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ totalBaskets }) => {
+const NavBar = () => {
   const { user } = isAuthenticated();
 
   return (

@@ -37,3 +37,16 @@ export const createBasket = (token, basket) => {
     .then((response) => response.json())
     .catch((err) => console.log(err));
 };
+
+export const deleteBasket = (token, basketId) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/baskets/${basketId}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'X-Auth-Token': `${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+};
