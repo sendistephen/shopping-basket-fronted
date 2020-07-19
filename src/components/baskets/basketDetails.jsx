@@ -1,19 +1,23 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import NavBar from '../layout/navbar';
-import { basketDetails } from '../actions/basket';
+import { basketDetails, deleteBasket } from '../actions/basket';
 import { isAuthenticated } from '../actions/auth';
 import LoadingIndicator from '../../common/loadingIndicator';
 import moment from 'moment';
+import { toast } from 'react-toastify';
+import { Redirect } from 'react-router-dom';
 
 const BasketDetails = (props) => {
   const [values, setValues] = useState({
     basket: '',
     error: '',
     loading: false,
+    redirect: false,
   });
 
   const { token } = isAuthenticated();
-  const { basket, loading } = values;
+  const { basket, loading, redirect } = values;
+
   useEffect(() => {
     const basketId = props.match.params.basketId;
     loadBasketDetails(basketId);
@@ -31,6 +35,34 @@ const BasketDetails = (props) => {
     });
   };
 
+  const handleDelete = () => {
+    const basketId = props.match.params.basketId;
+    const token = isAuthenticated().token;
+
+    deleteBasket(token, basketId).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, loading: false });
+        toast.error(data.error);
+      } else {
+        setValues({ ...values, redirect: true });
+        toast.success('Basket deleted successfully!');
+      }
+    });
+  };
+
+  const confirmDelete = () => {
+    let answer = window.confirm(
+      'Are you sure you want to perform this action?'
+    );
+    if (answer) {
+      handleDelete();
+    }
+  };
+
+  if (redirect) {
+    return <Redirect to={'/baskets'} />;
+  }
+
   return (
     <Fragment>
       <NavBar />
@@ -45,24 +77,12 @@ const BasketDetails = (props) => {
                   <h3 className='heading-md'>{basket && basket.category}</h3>
                   <span className='d-flex justify-content-between align-items-center'>
                     <span>
-                      <svg
-                        width='1.5em'
-                        height='1.5em'
-                        viewBox='0 0 16 16'
-                        className='bi bi-journal-plus text-success'
-                        fill='currentColor'
-                        xmlns='http://www.w3.org/2000/svg'
+                      <button
+                        onClick={confirmDelete}
+                        className='btn btn-danger btn-sm'
                       >
-                        <path d='M4 1h5v1H4a1 1 0 0 0-1 1H2a2 2 0 0 1 2-2zm10 7v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V8h1zM2 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H2zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H2zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H2z' />
-                        <path
-                          fillRule='evenodd'
-                          d='M13.5 1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V1.5a.5.5 0 0 1 .5-.5z'
-                        />
-                        <path
-                          fillRule='evenodd'
-                          d='M13 3.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z'
-                        />
-                      </svg>
+                        Trash
+                      </button>
                     </span>
                   </span>
                 </div>
