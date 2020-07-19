@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Baskets from './components/baskets/baskets';
 import PrivateRoute from './components/auth/PrivateRoute';
 import BasketDetails from './components/baskets/basketDetails';
+import NewBasket from './components/baskets/newBasket';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <ToastContainer />
         <Router>
           <Switch>
+            <PrivateRoute exact path='/basket/new' component={NewBasket} />
             <PrivateRoute
               exact
               path='/basket/:basketId'

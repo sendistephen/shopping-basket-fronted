@@ -37,7 +37,7 @@ const Baskets = ({ history }) => {
 
   return (
     <Fragment>
-      <NavBar />
+      <NavBar totalBaskets={baskets.length} />
       <div className='container'>
         <div className='row'>
           <div className='col-md-6 mx-auto'>
@@ -51,7 +51,7 @@ const Baskets = ({ history }) => {
                 baskets.map((basket) => (
                   <div
                     key={basket._id}
-                    className='d-flex justify-content-between basket-category mb-2 px-2 shadow-sm rounded-sm d-flex align-items-center'
+                    className='bg-dark text-secondary d-flex justify-content-between basket-category mb-2 px-2 shadow-sm rounded-sm d-flex align-items-center'
                   >
                     <Link
                       to={`/basket/${basket._id}`}

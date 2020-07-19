@@ -2,7 +2,7 @@ import React from 'react';
 import { isAuthenticated } from '../actions/auth';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ totalBaskets }) => {
   const { user } = isAuthenticated();
 
   return (
@@ -36,9 +36,9 @@ const NavBar = () => {
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link text-success' href='#'>
+              <Link className='nav-link text-success' to='/basket/new'>
                 New
-              </a>
+              </Link>
             </li>
           </ul>
 
