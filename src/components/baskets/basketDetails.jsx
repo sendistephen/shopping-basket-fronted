@@ -5,7 +5,7 @@ import { isAuthenticated } from '../actions/auth';
 import LoadingIndicator from '../../common/loadingIndicator';
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 const BasketDetails = (props) => {
   const [values, setValues] = useState({
@@ -83,6 +83,14 @@ const BasketDetails = (props) => {
                       >
                         Trash
                       </button>
+                    </span>
+                    <span>
+                      <Link
+                        to={`/basket/update/${basket._id}`}
+                        className='ml-2 btn btn-outline-secondary btn-sm'
+                      >
+                        Edit
+                      </Link>
                     </span>
                   </span>
                 </div>

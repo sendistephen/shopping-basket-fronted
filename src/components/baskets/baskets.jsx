@@ -17,12 +17,6 @@ const Baskets = ({ history }) => {
   const { baskets, loading } = values;
   const { token } = isAuthenticated();
 
-  useEffect(() => {
-    !isAuthenticated() && history.push('/login');
-
-    loadBaskets();
-  }, []);
-
   // get baskets
   const loadBaskets = () => {
     setValues({ ...values, loading: true });
@@ -34,6 +28,11 @@ const Baskets = ({ history }) => {
       }
     });
   };
+  useEffect(() => {
+    !isAuthenticated() && history.push('/login');
+
+    loadBaskets();
+  }, []);
 
   return (
     <Fragment>

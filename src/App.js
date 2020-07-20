@@ -9,6 +9,7 @@ import Baskets from './components/baskets/baskets';
 import PrivateRoute from './components/auth/PrivateRoute';
 import BasketDetails from './components/baskets/basketDetails';
 import NewBasket from './components/baskets/newBasket';
+import UpdateBasket from './components/baskets/updateBasket';
 
 class App extends Component {
   render() {
@@ -18,6 +19,11 @@ class App extends Component {
         <Router>
           <Switch>
             <PrivateRoute exact path='/basket/new' component={NewBasket} />
+            <PrivateRoute
+              exact
+              path='/basket/update/:basketId'
+              component={UpdateBasket}
+            />
             <PrivateRoute
               exact
               path='/basket/:basketId'
