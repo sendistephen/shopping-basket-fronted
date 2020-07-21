@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { register } from '../actions/auth';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -47,9 +48,6 @@ const Register = () => {
     });
   };
 
-  const showLoading = () =>
-    loading ? <div className='alert alert-info'>Loading...</div> : '';
-
   return (
     <div className='main'>
       <div className='d-flex'>
@@ -69,8 +67,6 @@ const Register = () => {
           </h1>
         </div>
         <div className='main-right-side'>
-          {showLoading()}
-
           <div
             className='card rounded-lg shadow'
             style={{ width: '28rem', borderColor: '#C4CFDB' }}
@@ -121,7 +117,15 @@ const Register = () => {
                   />
                 </div>
                 <button type='submit' className='btn btn-register btn-block'>
-                  Register
+                  {loading && (
+                    <Loader
+                      type='ThreeDots'
+                      color='#2BAD60'
+                      height='25'
+                      width='25'
+                    />
+                  )}
+                  {!loading && <span>Register</span>}
                 </button>
                 <hr className='my-5' />
                 <p className='lead text-center' style={{ color: '#ABBBC8' }}>
@@ -129,7 +133,6 @@ const Register = () => {
                   <Link
                     to='/login'
                     style={{ color: '#0071E2', fontWeight: '400' }}
-                    href='#'
                   >
                     Login
                   </Link>

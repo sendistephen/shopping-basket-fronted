@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Search = () => {
+const Search = ({ onSearch, query }) => {
   return (
     <form>
       <div className='mb-5 position-relative form-group d-flex align-items-center'>
@@ -25,6 +25,8 @@ const Search = () => {
           type='text'
           className='form-control search'
           placeholder='Search...'
+          value={query}
+          onChange={onSearch}
         />
       </div>
     </form>

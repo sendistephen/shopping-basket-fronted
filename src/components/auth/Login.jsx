@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { signin, authenticate, isAuthenticated } from '../actions/auth';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loader from 'react-loader-spinner';
 
 const Login = ({ history }) => {
   const [values, setValues] = useState({
@@ -16,7 +17,7 @@ const Login = ({ history }) => {
     isAuthenticated() && history.push('/baskets');
   });
 
-  const { email, password, error, loading, redirectToReferrer } = values;
+  const { email, password, loading, redirectToReferrer } = values;
   const { user } = isAuthenticated();
 
   const handleChange = (name) => (event) => {
@@ -30,6 +31,7 @@ const Login = ({ history }) => {
     signin({ email, password }).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
+        toast.error(data.error);
       } else {
         // authenticate user
         authenticate(data, () => {
@@ -50,9 +52,12 @@ const Login = ({ history }) => {
     <div className='main'>
       {redirectUser()}
       <div className='d-flex'>
-        <a className='main-login-btn btn btn-outline-secondary shadow' href='#'>
+        <Link
+          className='main-login-btn btn btn-outline-secondary shadow'
+          to='/login'
+        >
           Log in
-        </a>
+        </Link>
         <div className='main-left-side d-flex'>
           <h1
             className='pl-5 align-items-center align-self-center'
@@ -62,8 +67,6 @@ const Login = ({ history }) => {
           </h1>
         </div>
         <div className='main-right-side'>
-          {/* {showLoading()} */}
-
           <div
             className='card rounded-lg shadow'
             style={{ width: '28rem', borderColor: '#C4CFDB' }}
@@ -103,15 +106,24 @@ const Login = ({ history }) => {
                     onChange={handleChange('password')}
                   />
                 </div>
+
                 <button type='submit' className='btn btn-register btn-block'>
-                  Login
+                  {loading && (
+                    <Loader
+                      type='ThreeDots'
+                      color='#2BAD60'
+                      height='25'
+                      width='25'
+                    />
+                  )}
+                  {!loading && <span>Login</span>}
                 </button>
                 <hr className='my-5' />
                 <p className='lead text-center' style={{ color: '#ABBBC8' }}>
                   Already have an account?{' '}
-                  <a style={{ color: '#0071E2', fontWeight: '400' }} href='#'>
+                  <Link to='/' style={{ color: '#0071E2', fontWeight: '400' }}>
                     Sign up
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>
