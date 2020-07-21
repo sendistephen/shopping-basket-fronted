@@ -8,9 +8,9 @@ const NavBar = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light'>
       <div className='container'>
-        <a className='navbar-brand' href='#'>
+        <Link to='/baskets' className='navbar-brand'>
           Shopping<span>Basket</span>
-        </a>
+        </Link>
         <button
           className='navbar-toggler'
           type='button'
@@ -31,9 +31,9 @@ const NavBar = () => {
               </Link>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <Link to='/baskets/completed' className='nav-link'>
                 Completed
-              </a>
+              </Link>
             </li>
             <li className='nav-item'>
               <Link className='nav-link text-success' to='/basket/new'>
@@ -44,9 +44,9 @@ const NavBar = () => {
 
           <ul className='navbar-nav ml-auto'>
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <Link to='/profile' className='nav-link' href='#'>
                 Hi, <span className='text-sm text-primary'>{user.name}</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

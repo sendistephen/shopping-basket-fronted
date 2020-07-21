@@ -14,6 +14,16 @@ const Baskets = ({ history }) => {
     error: '',
   });
 
+  const [query, setQuery] = useState('');
+
+  // new updated list based on the search
+  // baskets id the default state
+  const [filteredBaskets, setFilteredBaskets] = useState([]);
+
+  const handleSearchQuery = (e) => {
+    setQuery(e.target.value);
+  };
+
   const { baskets, loading } = values;
   const { token } = isAuthenticated();
 
@@ -28,11 +38,20 @@ const Baskets = ({ history }) => {
       }
     });
   };
+
   useEffect(() => {
     !isAuthenticated() && history.push('/login');
 
     loadBaskets();
   }, []);
+
+  useEffect(() => {
+    setFilteredBaskets(
+      baskets.filter((basket) =>
+        basket.category.toLowerCase().includes(query.toLowerCase())
+      )
+    );
+  }, [query, baskets]);
 
   return (
     <Fragment>
@@ -42,12 +61,15 @@ const Baskets = ({ history }) => {
           <div className='col-md-6 mx-auto'>
             <div className='mt-5'>
               <h3 className='mb-5'>Things on my shopping list</h3>
-              <Search />
+              <Search
+                baskets={baskets}
+                onSearch={handleSearchQuery}
+                query={query}
+              />
               {loading ? (
                 <LoadingIndicator />
               ) : (
-                baskets.length > 0 &&
-                baskets.map((basket) => (
+                filteredBaskets.map((basket) => (
                   <div
                     key={basket._id}
                     className='bg-dark text-secondary d-flex justify-content-between basket-category mb-2 px-2 shadow-sm rounded-sm d-flex align-items-center'
