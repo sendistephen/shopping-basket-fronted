@@ -51,13 +51,6 @@ const Register = () => {
   return (
     <div className='main'>
       <div className='d-flex'>
-        <Link
-          to='/login'
-          className='main-login-btn btn btn-outline-secondary shadow'
-          href='#'
-        >
-          Log in
-        </Link>
         <div className='main-left-side d-flex'>
           <h1
             className='pl-5 align-items-center align-self-center'
