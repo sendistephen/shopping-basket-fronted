@@ -10,6 +10,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import BasketDetails from './components/baskets/basketDetails';
 import NewBasket from './components/baskets/newBasket';
 import UpdateBasket from './components/baskets/updateBasket';
+import Logout from './components/auth/Logout';
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
             />
             <PrivateRoute exact path='/baskets' component={Baskets} />
             <Route exact path='/login' component={Login} />
+            <Route path='/logout' component={Logout} />
             <Route exact path='/' component={Register} />
           </Switch>
         </Router>

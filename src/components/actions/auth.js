@@ -45,3 +45,9 @@ export const isAuthenticated = () => {
     return false;
   }
 };
+
+export const signout = () => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('jwt');
+  }
+};

@@ -52,12 +52,6 @@ const Login = ({ history }) => {
     <div className='main'>
       {redirectUser()}
       <div className='d-flex'>
-        <Link
-          className='main-login-btn btn btn-outline-secondary shadow'
-          to='/login'
-        >
-          Log in
-        </Link>
         <div className='main-left-side d-flex'>
           <h1
             className='pl-5 align-items-center align-self-center'

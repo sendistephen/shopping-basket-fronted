@@ -16,15 +16,6 @@ body {
   top: 130px;
   left: 600px;
 }
-.main-login-btn {
-  position: absolute;
-  top: 20px;
-  left: 85%;
-  border-radius: 30px;
-  border-color: #dde6f0;
-  color: #5e7493;
-  padding: 10px 46px;
-}
 
 input[type='text'],
 input[type='email'],
@@ -49,12 +40,6 @@ input[type='password'] {
   background-color: #27272e;
 }
 
-.main-login-btn:hover {
-  background-color: #dde6f0;
-  border-color: #dde6f0;
-  color: #2c2c33;
-  font-weight: 400 !important;
-}
 .basket-category {
   padding-top: 4px;
   padding-bottom: 4px;

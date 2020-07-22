@@ -42,11 +42,24 @@ const NavBar = () => {
             </li>
           </ul>
 
-          <ul className='navbar-nav ml-auto'>
-            <li className='nav-item'>
-              <Link to='/profile' className='nav-link' href='#'>
-                Hi, <span className='text-sm text-primary'>{user.name}</span>
+          <ul className='nav navbar-nav  navbar-right'>
+            <li className='nav-item dropdown'>
+              <Link
+                to='!#'
+                className='nav-link dropdown-toggle'
+                id='navbarDropdown'
+                role='button'
+                data-toggle='dropdown'
+                aria-haspopup='true'
+                aria-expanded='false'
+              >
+                Hi, <span className='text-sm_1 text-primary'>{user.name}</span>
               </Link>
+              <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
+                <Link className='dropdown-item text-sm_2' to='/logout'>
+                  Sign out
+                </Link>
+              </div>
             </li>
           </ul>
         </div>
