@@ -6,6 +6,7 @@ import LoadingIndicator from '../../common/loadingIndicator';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import { Redirect, Link } from 'react-router-dom';
+import Footer from '../layout/footer';
 
 const BasketDetails = (props) => {
   const [values, setValues] = useState({
@@ -21,6 +22,7 @@ const BasketDetails = (props) => {
   useEffect(() => {
     const basketId = props.match.params.basketId;
     loadBasketDetails(basketId);
+    console.log(loadBasketDetails(basketId));
   }, [props]);
 
   const loadBasketDetails = (basketId) => {
@@ -121,15 +123,40 @@ const BasketDetails = (props) => {
                   </span>
                   <hr />
                 </div>
-                <button className='btn btn-sm btn-primary shadow-sm'>
+                <button
+                  className='btn btn-sm btn-primary shadow-sm'
+                  data-toggle='collapse'
+                  href='#collapseItems'
+                  role='button'
+                  aria-expanded='false'
+                  aria-controls='collapseItems'
+                >
                   View items {''}
-                  <span className='badge badge-light'>9</span>
+                  <span className='badge badge-light'>
+                    {basket && basket.items.length}
+                  </span>
                 </button>
+                {/* show/hide items */}
+                <div className='collapse' id='collapseItems'>
+                  <p className='lead text-sm_1 font-weight-bold mt-3'>
+                    Pending items to buy
+                  </p>
+                  {basket &&
+                    basket.items.map((item) => (
+                      <div key={item._id} className='list-group'>
+                        <span className='list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center text-sm_1'>
+                          {item.name}
+                          <input type='checkbox' />
+                        </span>
+                      </div>
+                    ))}
+                </div>
               </div>
             )}
           </div>
         </div>
       </div>
+      <Footer />
     </Fragment>
   );
 };
