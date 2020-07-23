@@ -22,7 +22,6 @@ const BasketDetails = (props) => {
   useEffect(() => {
     const basketId = props.match.params.basketId;
     loadBasketDetails(basketId);
-    console.log(loadBasketDetails(basketId));
   }, [props]);
 
   const loadBasketDetails = (basketId) => {
@@ -78,6 +77,20 @@ const BasketDetails = (props) => {
                 <div className='d-flex justify-content-between'>
                   <h3 className='heading-md'>{basket && basket.category}</h3>
                   <span className='d-flex justify-content-between align-items-center'>
+                    <Link
+                      to={`/basket/${basket._id}/item/new`}
+                      className='btn btn-outline-dark btn-sm text-sm_1 mr-2 text-dark item-link'
+                    >
+                      New Item
+                    </Link>
+                    <span>
+                      <Link
+                        to={`/basket/update/${basket._id}`}
+                        className='mr-2 btn btn-outline-warning btn-sm'
+                      >
+                        Edit
+                      </Link>
+                    </span>
                     <span>
                       <button
                         onClick={confirmDelete}
@@ -85,14 +98,6 @@ const BasketDetails = (props) => {
                       >
                         Trash
                       </button>
-                    </span>
-                    <span>
-                      <Link
-                        to={`/basket/update/${basket._id}`}
-                        className='ml-2 btn btn-outline-secondary btn-sm'
-                      >
-                        Edit
-                      </Link>
                     </span>
                   </span>
                 </div>

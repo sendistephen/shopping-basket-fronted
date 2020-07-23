@@ -9,6 +9,7 @@ import Baskets from './components/baskets/baskets';
 import PrivateRoute from './components/auth/PrivateRoute';
 import BasketDetails from './components/baskets/basketDetails';
 import NewBasket from './components/baskets/newBasket';
+import NewItem from './components/baskets/newItem';
 import UpdateBasket from './components/baskets/updateBasket';
 import Logout from './components/auth/Logout';
 
@@ -19,6 +20,11 @@ class App extends Component {
         <ToastContainer />
         <Router>
           <Switch>
+            <PrivateRoute
+              exact
+              path='/basket/:basketId/item/new'
+              component={NewItem}
+            />
             <PrivateRoute exact path='/basket/new' component={NewBasket} />
             <PrivateRoute
               exact

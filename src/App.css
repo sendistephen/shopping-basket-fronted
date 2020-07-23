@@ -84,3 +84,9 @@ form .search {
 .list-group-item {
   border-radius: 0 !important;
 }
+.item-link {
+  text-decoration: none;
+}
+a.item-link:hover {
+  color: #dde6f0 !important;
+}
