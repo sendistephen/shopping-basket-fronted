@@ -109,7 +109,11 @@ const Register = () => {
                     onChange={handleChange('password')}
                   />
                 </div>
-                <button type='submit' className='btn btn-register btn-block'>
+                <button
+                  type='submit'
+                  disabled={loading}
+                  className='btn btn-register btn-block'
+                >
                   {loading && (
                     <Loader
                       type='ThreeDots'

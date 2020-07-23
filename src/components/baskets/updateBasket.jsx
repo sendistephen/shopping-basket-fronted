@@ -115,7 +115,7 @@ const UpdateBasket = ({ match }) => {
                     required
                   />
                 </div>
-                <button type='submit' className='btn btn-dark btn-sm'>
+                <button type='submit' disabled={loading} className='btn btn-dark btn-sm'>
                   {loading && (
                     <Loader
                       type='ThreeDots'

@@ -5,20 +5,22 @@ import Footer from '../layout/footer';
 import { createBasket } from '../actions/basket';
 import { toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
+import { createItem } from '../actions/items';
+import { Redirect } from 'react-router-dom';
 
-const NewBasket = ({ history }) => {
+const NewItem = ({ history, match }) => {
   const [values, setValues] = useState({
-    category: '',
-    description: '',
+    name: '',
     error: '',
     loading: false,
+    redirect: false,
   });
 
   useEffect(() => {
     !isAuthenticated() && history.push('/login');
   });
 
-  const { category, description, loading } = values;
+  const { name, loading, redirect } = values;
   const { token } = isAuthenticated();
 
   const handleChange = (name) => (e) => {
@@ -27,25 +29,27 @@ const NewBasket = ({ history }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newBasket = { category, description };
+    const newItem = { name };
     setValues({ ...values, error: '', loading: true });
 
-    createBasket(token, newBasket).then((data) => {
+    createItem(token, match.params.basketId, newItem).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
         toast.error(data.error);
       } else {
         setValues({
-          category: '',
-          description: '',
+          name: '',
           error: false,
           loading: false,
+          redirect: true,
         });
         toast.success('Added successfully!');
       }
     });
   };
-
+  if (redirect) {
+    return <Redirect to={`/basket/${match.params.basketId}`} />;
+  }
   return (
     <Fragment>
       <NavBar />
@@ -54,45 +58,27 @@ const NewBasket = ({ history }) => {
           <div className='col-md-6 mx-auto'>
             <div className='mt-5'>
               <p className='lead text-dark font-weight-normal mb-3'>
-                Add new basket to collection
+                Add new item to basket to collection
               </p>
               <form onSubmit={handleSubmit}>
                 <div className='form-group'>
-                  <label
-                    className='text-secondary text-sm_1'
-                    htmlFor='category'
-                  >
-                    Category
+                  <label className='text-secondary text-sm_1' htmlFor='name'>
+                    Name
                   </label>
                   <input
-                    onChange={handleChange('category')}
-                    value={category}
-                    name='category'
+                    onChange={handleChange('name')}
+                    value={name}
+                    name='name'
                     type='text'
                     className='form-control form-control-sm'
                     required
                   />
                 </div>
-                <div className='form-group'>
-                  <label
-                    className='text-secondary text-sm_1'
-                    htmlFor='description'
-                  >
-                    Description
-                  </label>
-                  <input
-                    onChange={handleChange('description')}
-                    value={description}
-                    name='description'
-                    type='text'
-                    className='form-control form-control-sm'
-                    required
-                  />
-                </div>
+
                 <button
                   type='submit'
                   disabled={loading}
-                  className='btn btn-secondary btn-sm'
+                  className='btn btn-dark btn-sm'
                 >
                   {loading && (
                     <Loader
@@ -114,4 +100,4 @@ const NewBasket = ({ history }) => {
   );
 };
 
-export default NewBasket;
+export default NewItem;
