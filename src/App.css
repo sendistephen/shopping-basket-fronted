@@ -81,8 +81,15 @@ form .search {
   padding: 18px 25px !important;
   border: 1px solid #e7e7e7;
 }
+
+.list-group .list-group-item {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
 .list-group-item {
   border-radius: 0 !important;
+  border-color: aliceblue;
+  border-radius: 2px !important;
 }
 .item-link {
   text-decoration: none;

@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { isAuthenticated } from '../actions/auth';
 import NavBar from '../layout/navbar';
 import Footer from '../layout/footer';
-import { createBasket } from '../actions/basket';
 import { toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 import { createItem } from '../actions/items';
