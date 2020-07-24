@@ -79,14 +79,14 @@ const BasketDetails = (props) => {
                   <span className='d-flex justify-content-between align-items-center'>
                     <Link
                       to={`/basket/${basket._id}/item/new`}
-                      className='btn btn-outline-dark btn-sm text-sm_1 mr-2 text-dark item-link'
+                      className='shadow btn btn-outline-dark btn-sm text-sm_2 mr-2 text-dark item-link'
                     >
                       New Item
                     </Link>
                     <span>
                       <Link
                         to={`/basket/update/${basket._id}`}
-                        className='mr-2 btn btn-outline-warning btn-sm'
+                        className='mr-2 btn btn-outline-warning btn-sm text-sm_2 shadow'
                       >
                         Edit
                       </Link>
@@ -94,7 +94,7 @@ const BasketDetails = (props) => {
                     <span>
                       <button
                         onClick={confirmDelete}
-                        className='btn btn-danger btn-sm'
+                        className='btn btn-danger btn-sm text-sm_2 shadow'
                       >
                         Trash
                       </button>
@@ -129,7 +129,7 @@ const BasketDetails = (props) => {
                   <hr />
                 </div>
                 <button
-                  className='btn btn-sm btn-primary shadow-sm'
+                  className='btn btn-sm btn-primary shadow'
                   data-toggle='collapse'
                   href='#collapseItems'
                   role='button'
@@ -148,8 +148,8 @@ const BasketDetails = (props) => {
                   </p>
                   {basket &&
                     basket.items.map((item) => (
-                      <div key={item._id} className='list-group'>
-                        <span className='list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center text-sm_1'>
+                      <div key={item._id} className='list-group '>
+                        <span className='shadow list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center text-sm_2'>
                           {item.name}
                           <input type='checkbox' />
                         </span>
