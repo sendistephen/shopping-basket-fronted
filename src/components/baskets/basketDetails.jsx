@@ -7,17 +7,20 @@ import moment from 'moment';
 import { toast } from 'react-toastify';
 import { Redirect, Link } from 'react-router-dom';
 import Footer from '../layout/footer';
+import { deleteItem } from '../actions/items';
 
 const BasketDetails = (props) => {
   const [values, setValues] = useState({
     basket: '',
     error: '',
+    items: [],
     loading: false,
     redirect: false,
+    refresh: false,
   });
 
   const { token } = isAuthenticated();
-  const { basket, loading, redirect } = values;
+  const { basket, loading, items, redirect, refresh } = values;
 
   useEffect(() => {
     const basketId = props.match.params.basketId;
@@ -60,8 +63,30 @@ const BasketDetails = (props) => {
     }
   };
 
+  // delete basket item
+  const handleRemoveItem = (itemId) => {
+    const token = isAuthenticated().token;
+
+    deleteItem(token, props.match.params.basketId, itemId).then((data) => {
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        setValues({
+          ...values,
+          refresh: true,
+        });
+        toast.success('Item removed!');
+      }
+    });
+  };
+
   if (redirect) {
     return <Redirect to={'/baskets'} />;
+  }
+  if (refresh) {
+    const basketId = props.match.params.basketId;
+
+    return <Redirect to={`/basket/${basketId}`} />;
   }
 
   return (
@@ -150,8 +175,25 @@ const BasketDetails = (props) => {
                     basket.items.map((item) => (
                       <div key={item._id} className='list-group '>
                         <span className='shadow list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center text-sm_2'>
-                          {item.name}
-                          <input type='checkbox' />
+                          <span>
+                            <input type='checkbox' className='mr-2' />
+                            {item.name}
+                          </span>
+                          <svg
+                            onClick={() => handleRemoveItem(item._id)}
+                            width='1em'
+                            height='1em'
+                            viewBox='0 0 16 16'
+                            className='bi bi-trash'
+                            fill='currentColor'
+                            xmlns='http://www.w3.org/2000/svg'
+                          >
+                            <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z' />
+                            <path
+                              fillRule='evenodd'
+                              d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'
+                            />
+                          </svg>
                         </span>
                       </div>
                     ))}
