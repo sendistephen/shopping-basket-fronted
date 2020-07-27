@@ -97,3 +97,9 @@ form .search {
 a.item-link:hover {
   color: #dde6f0 !important;
 }
+.bi-trash {
+  cursor: pointer;
+}
+.bi-trash:hover {
+  color: #ff5f5f;
+}

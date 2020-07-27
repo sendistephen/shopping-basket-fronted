@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
-import { register } from '../actions/auth';
+import React, { useState, useEffect } from 'react';
+import { register, isAuthenticated } from '../actions/auth';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
-const Register = () => {
+const Register = ({ history }) => {
   const [values, setValues] = useState({
     name: '',
     email: '',
     password: '',
     error: '',
     loading: false,
+  });
+  useEffect(() => {
+    // redirect to tasklist page if user is authenticated already
+    isAuthenticated() && history.push('/baskets');
   });
   // destructure state
   const { name, email, password, loading } = values;
