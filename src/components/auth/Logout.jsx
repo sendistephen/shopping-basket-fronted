@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { signout } from '../actions/auth';
 
 const Logout = () => {

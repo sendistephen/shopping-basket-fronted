@@ -20,7 +20,7 @@ const BasketDetails = (props) => {
   });
 
   const { token } = isAuthenticated();
-  const { basket, loading, items, redirect, refresh } = values;
+  const { basket, loading, redirect, refresh } = values;
 
   useEffect(() => {
     const basketId = props.match.params.basketId;
@@ -157,7 +157,6 @@ const BasketDetails = (props) => {
                   className='btn btn-sm btn-primary shadow'
                   data-toggle='collapse'
                   href='#collapseItems'
-                  role='button'
                   aria-expanded='false'
                   aria-controls='collapseItems'
                 >
