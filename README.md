@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.com/sendistephen/shopping-basket-fronted.svg?branch=develop)](https://travis-ci.com/sendistephen/shopping-basket-fronted)
 [![Coverage Status](https://coveralls.io/repos/github/sendistephen/shopping-basket-fronted/badge.svg?branch=develop)](https://coveralls.io/github/sendistephen/shopping-basket-fronted?branch=develop)
-
 [![Netlify Status](https://api.netlify.com/api/v1/badges/94a514f4-5db0-43a0-be32-97aefdf3d84d/deploy-status)](https://app.netlify.com/sites/shopping-baskets-2020/deploys)
 
 
