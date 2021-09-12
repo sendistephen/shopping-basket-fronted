@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.com/sendistephen/shopping-basket-fronted.svg?branch=develop)](https://travis-ci.com/sendistephen/shopping-basket-fronted)
 [![Coverage Status](https://coveralls.io/repos/github/sendistephen/shopping-basket-fronted/badge.svg?branch=develop)](https://coveralls.io/github/sendistephen/shopping-basket-fronted?branch=develop)
 
-
 # Shopping Basket App Fronted(React)
 
 This is a shopping basket web application built with react. It allows users to manage their shopping lists.
