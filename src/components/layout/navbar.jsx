@@ -45,7 +45,6 @@ const NavBar = () => {
           <ul className='nav navbar-nav  navbar-right'>
             <li className='nav-item dropdown'>
               <Link
-                to='!#'
                 className='nav-link dropdown-toggle'
                 id='navbarDropdown'
                 role='button'
